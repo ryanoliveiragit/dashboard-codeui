@@ -8,6 +8,7 @@ import {
   SidebarProvider,
   TabSelectProvider,
 } from "@/shared/context/aside";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,6 +37,7 @@ export default function RootLayout({
                   <Sidebar />
                   {children}
                   <AsideNotify />
+                  <Toaster />
                 </div>
               </ThemeProvider>
             </TabSelectProvider>

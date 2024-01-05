@@ -11,7 +11,9 @@ export default function Home() {
   return (
     <main className="flex-1 flex-col">
       <Header />
-      <section className="p-5">{useGetPathname(selectedTab)}</section>
+      <section className="p-5 h-screen max-h-[900px] overflow-x-auto" style={{ height: "calc(100vh - 5.5rem)" }}>
+        {useGetPathname(selectedTab)}
+      </section>
     </main>
   );
 }

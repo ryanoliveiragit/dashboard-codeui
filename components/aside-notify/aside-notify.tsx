@@ -32,7 +32,7 @@ export const AsideNotify = () => {
           style={{ overflow: "hidden" }}
         >
           {isOpenNotify && (
-            <aside className="flex flex-col h-screen">
+            <aside className="flex flex-col h-full">
               <ul className="p-[24px] bg-background border-l-2 border-secondary flex-grow">
                 <h1 className="text-sm flex flex-row gap-2 items-center mt-2">
                   <BiBell /> Notificações

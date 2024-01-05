@@ -7,6 +7,7 @@ import { ModeToggle } from "../ui/toggle-mode";
 import { SidebarContext, SidebarNotifyContext, TabSelectContext } from "@/shared/context/aside";
 import { useContext } from "react";
 import { Button } from "../ui/button";
+import { ToastDemo } from "../toast/toast";
 
 export const Header = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
@@ -26,7 +27,7 @@ export const Header = () => {
             </Button>
           )}
           <TbBookmarks size={20} />
-          <HiOutlineStar size={20} />
+          <ToastDemo />
           <span className="flex flex-row gap-2 items-center text-muted-foreground">
             Meu projeto
           </span>

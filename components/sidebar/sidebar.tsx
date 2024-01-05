@@ -66,7 +66,7 @@ export const Sidebar = () => {
           style={{ overflow: "hidden" }}
         >
           {isOpen && (
-            <aside className="flex flex-col h-screen">
+            <aside className="flex flex-col h-full">
               <ul className="p-[24px] bg-background border-r-2  border-secondary flex-grow">
                 <div>
                   <UserProfile />
