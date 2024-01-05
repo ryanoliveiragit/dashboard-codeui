@@ -7,6 +7,8 @@
     --card: #2ee76b;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 0 0% 9%;
@@ -31,6 +33,7 @@
     --card: #e23b3b;
     --background: 0 0% 8.9%;
     --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
@@ -50,9 +53,11 @@
   }
 }
 
+
+
 @layer base {
   * {
-    /* @apply border-border; -- Removido, pois não está definido */
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -69,8 +74,10 @@
   .bg-card {
     background-color: var(--card);
   }
+}
 
+@variants hover, focus {
   .bg-card:hover, .bg-card:focus {
-    background-color: var(--card); /* Substituído --card-hover por --card */
+    background-color: var(--card-hover);
   }
 }
