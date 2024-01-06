@@ -1,4 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+module.exports = {
+  images: {
+    domains: ['logowik.com', 'www.nextplc.co.uk', 'cdn.discordapp.com'], //aqui vai o domain do backend
+  },
+  webpack: (config, { isServer }) => {
+    config.module.rules.push(
+      {
+        test: /\.(mp4)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/video/[name][ext][query]',
+        },
+      }
+    );
 
-module.exports = nextConfig
+    if (isServer) {
+      config.externals.push('fs');
+    }
+
+    return config;
+  },
+};

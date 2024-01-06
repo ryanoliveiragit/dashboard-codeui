@@ -58,7 +58,7 @@ type SidebarContextType = {
   }
   
   export function TabSelectProvider({ children }: TabSelectContextProps) {
-    const [selectedTab, setSelectedTab] = useState('dashboard');
+    const [selectedTab, setSelectedTab] = useState('Analytics');
   
     return (
       <TabSelectContext.Provider value={{ selectedTab, setSelectedTab }}>

@@ -49,7 +49,7 @@ const data = [
 export const VerticalBar = () => {
   return (
     <div>
-      <ResponsiveContainer width={"100%"} height={300} className="mt-10">
+      <ResponsiveContainer width={"100%"} height={250} className="mt-10">
         <ComposedChart
           layout="vertical"
           width={400}

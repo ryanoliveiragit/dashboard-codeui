@@ -87,7 +87,7 @@ const data = [
 export const RenderLineChart = () => (
   <div>
     <section>
-      <ResponsiveContainer width={"100%"} height={300} className="mt-10">
+      <ResponsiveContainer width={"100%"} height={250} className="mt-10">
         <LineChart
           width={500}
           height={300}
