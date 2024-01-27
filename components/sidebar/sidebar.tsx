@@ -2,10 +2,7 @@
 import { UserProfile } from "../profile";
 import { AnimatePresence, motion } from "framer-motion";
 
-import React, {
-  useState,
-  useContext,
-} from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaCircle } from "react-icons/fa";
@@ -18,16 +15,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ModeToggle } from "../ui/toggle-mode";
-
+import { useRouter } from "next/navigation";
 import { myProjectLinks } from "@/lib/sidebar-links";
 import { tabData } from "@/lib/history-links";
 import { settingsData } from "@/lib/settings-links";
 import { SidebarContext, TabSelectContext } from "@/shared/context/aside";
+import Cookie from "js-cookie";
 
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
   const { selectedTab, setSelectedTab } = useContext(TabSelectContext)!;
-
+  const router = useRouter();
+  function handleLogout() {
+    Cookie.remove("auth_token");
+    router.push("auth");
+  }
   const [buttonStyles, setButtonStyles] = useState<
     Record<string, React.CSSProperties>
   >(
@@ -50,7 +52,7 @@ export const Sidebar = () => {
 
     setButtonStyles((prevStyles) => ({
       ...prevStyles,
-      [tabName]: { backgroundColor: "#FAFAFA", color: 'black' },
+      [tabName]: { backgroundColor: "#FAFAFA", color: "black" },
     }));
   };
 
@@ -164,7 +166,7 @@ export const Sidebar = () => {
                     <RxHamburgerMenu />
                   </Button>
 
-                  <Button variant="default">
+                  <Button variant="default" onClick={handleLogout}>
                     <ImExit />
                   </Button>
                 </section>

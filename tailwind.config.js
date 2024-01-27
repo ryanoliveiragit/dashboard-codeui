@@ -14,6 +14,9 @@ module.exports = {
       padding: "2rem",
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
       screens: {
         'fscreen': '1780px',
       },

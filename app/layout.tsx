@@ -34,9 +34,7 @@ export default function RootLayout({
                 disableTransitionOnChange
               >
                 <div className="w-full flex">
-                  <Sidebar />
                   {children}
-                  <AsideNotify />
                   <Toaster />
                 </div>
               </ThemeProvider>
