@@ -1,11 +1,21 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUserProfile } from "@/services/user/get-user-profile";
+import { useUserID } from "@/shared/hooks/useProfileID";
 
-export const AvatarUser = () => {
+type AvatarUserType = {
+  size?: string;
+  avatarUrl: any;
+};
+
+export const AvatarUser = ({ size, avatarUrl }: AvatarUserType) => {
+  const userData = useUserID();
+  const encurtedFullName = userData.user?.fullName
+    .substring(0, 2)
+    .toUpperCase();
   return (
-    <Avatar>
-      <AvatarImage src="https://github.com/ryanoliveiragit.png" />
-      <AvatarFallback>R.O</AvatarFallback>
+    <Avatar className={size}>
+      <AvatarImage src={avatarUrl} />
+      <AvatarFallback>{encurtedFullName}</AvatarFallback>
     </Avatar>
   );
 };
-

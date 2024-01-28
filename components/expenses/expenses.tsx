@@ -10,7 +10,10 @@ import { useTrialSuporte } from "@/shared/hooks/useTrialSuport";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
+const OnboardingDespesas = dynamic(() => import("../onboarding/despesas"), {
+  ssr: false,
+});
 export const Expenses = () => {
   const { percentageRemaining, message } = useExpirationDomain();
   const { percentageRemainingHost, messageHost } = useExpirationHost();
@@ -31,16 +34,25 @@ export const Expenses = () => {
 
   return (
     <section>
+      <OnboardingDespesas />
       {isLoading ? (
         <Skeleton className="mt-6 w-full h-[190px]" />
       ) : (
         <>
-          <div className="rounded-md bg-accent border-accent border-l-4 border-green-300">
+          <div
+            className="rounded-md bg-accent border-accent border-l-4 border-green-300"
+            id="desp-3"
+          >
             <div className="p-6 flex justify-between">
               <nav className="flex flex-row gap-10">
                 <section className="">
-                  <h1 className="font-semibold text-lg">Domínio web</h1>
-                  <ul className="flex gap-4 text-sm text-muted-foreground mt-4">
+                  <h1 className="font-semibold text-lg" id="desp-1">
+                    Domínio web
+                  </h1>
+                  <ul
+                    className="flex gap-4 text-sm text-muted-foreground mt-4"
+                    id="desp-4"
+                  >
                     <li className="flex gap-2 items-center">
                       <CiUser size={14} /> Portfolio
                     </li>
@@ -51,7 +63,7 @@ export const Expenses = () => {
                       <CiMail size={14} /> ryanoliveirasp@icloud.com.br
                     </li>
                   </ul>
-                  <div className="mt-4 flex flex-col gap-2">
+                  <div className="mt-4 flex flex-col gap-2" id="desp-5">
                     <h3 className="text-sm">{message}</h3>
                     <Progress value={percentageRemaining} />
                   </div>
@@ -72,7 +84,7 @@ export const Expenses = () => {
 
                 <div className="py-5 flex flex-row gap-10 items-center">
                   <div className="border-l border-muted-foreground h-full"></div>
-                  <header className="flex flex-col gap-1">
+                  <header className="flex flex-col gap-1" id="desp-6">
                     <span className="text-sm">
                       Plano atual: <strong>Anual</strong>
                     </span>
@@ -83,7 +95,7 @@ export const Expenses = () => {
                 </div>
               </nav>
               <section>
-                <AvatarUser />
+                <AvatarUser avatarUrl="" />
               </section>
             </div>
           </div>
@@ -143,7 +155,7 @@ export const Expenses = () => {
                 </div>
               </nav>
               <section>
-                <AvatarUser />
+                <AvatarUser avatarUrl="" />
               </section>
             </div>
           </div>
@@ -205,7 +217,7 @@ export const Expenses = () => {
                 </div>
               </nav>
               <section>
-                <AvatarUser />
+                <AvatarUser avatarUrl="" />
               </section>
             </div>
           </div>
@@ -215,7 +227,10 @@ export const Expenses = () => {
       {isLoading ? (
         <Skeleton className="mt-6 w-full h-[190px]" />
       ) : (
-        <div className="rounded-md bg-accent border-accent border-l-4 border-red-300 mt-6">
+        <div
+          className="rounded-md bg-accent border-accent border-l-4 border-red-300 mt-6"
+          id="desp-2"
+        >
           <div className="p-6 flex justify-between">
             <nav className="flex flex-row gap-10">
               <section className="">
@@ -274,7 +289,7 @@ export const Expenses = () => {
               </div>
             </nav>
             <section>
-              <AvatarUser />
+              <AvatarUser avatarUrl="" />
             </section>
           </div>
         </div>

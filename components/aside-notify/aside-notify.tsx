@@ -32,7 +32,7 @@ export const AsideNotify = () => {
           style={{ overflow: "hidden" }}
         >
           {isOpenNotify && (
-            <aside className="flex flex-col h-full">
+            <div className="flex flex-col h-full">
               <ul className="p-[24px] bg-background border-l-2 border-secondary flex-grow">
                 <h1 className="text-sm flex flex-row gap-2 items-center mt-2">
                   <BiBell /> Notificações
@@ -41,7 +41,7 @@ export const AsideNotify = () => {
                 {/*teste*/}
                 <section className="flex flex-col gap-4 mt-5">
                   <div className="mt-5 flex gap-2 items-center">
-                    <AvatarUser />
+                    <AvatarUser avatarUrl="" />
 
                     <div className="flex flex-col ">
                       <div className="flex flex-row gap-2">
@@ -56,7 +56,7 @@ export const AsideNotify = () => {
                     </div>
                   </div>
                   <div className="mt-5 flex gap-2 items-center">
-                    <AvatarUser />
+                  <AvatarUser avatarUrl="" />
 
                     <div className="flex flex-col ">
                       <div className="flex flex-row gap-2">
@@ -71,7 +71,7 @@ export const AsideNotify = () => {
                     </div>
                   </div>
                   <div className="mt-5 flex gap-2 items-center">
-                    <AvatarUser />
+                  <AvatarUser avatarUrl="" />
 
                     <div className="flex flex-col ">
                       <div className="flex flex-row gap-2">
@@ -98,7 +98,7 @@ export const AsideNotify = () => {
                   </Button>
                 </section>
               </section>
-            </aside>
+            </div>
           )}
         </motion.aside>
       </AnimatePresence>

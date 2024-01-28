@@ -21,6 +21,7 @@ import { tabData } from "@/lib/history-links";
 import { settingsData } from "@/lib/settings-links";
 import { SidebarContext, TabSelectContext } from "@/shared/context/aside";
 import Cookie from "js-cookie";
+import Link from "next/link";
 
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
@@ -144,12 +145,14 @@ export const Sidebar = () => {
                           <AccordionContent>
                             <ul className="flex flex-col gap-5 px-4 py-2">
                               {setting.content.map((item, subIndex) => (
-                                <li
+                                <Link
                                   key={subIndex}
-                                  className="flex items-center text-sm"
+                                  className="flex items-center text-sm hover:underline"
+                                  onClick={() => handleTabClick(setting.title)}
+                                  href="#"
                                 >
                                   {item}
-                                </li>
+                                </Link>
                               ))}
                             </ul>
                           </AccordionContent>

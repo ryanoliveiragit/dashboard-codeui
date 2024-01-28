@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Sidebar } from "@/components/sidebar";
-import { AsideNotify } from "@/components/aside-notify";
 import {
   SidebarNotifyProvider,
   SidebarProvider,

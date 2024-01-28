@@ -23,7 +23,7 @@ export function DatePickerWithRange({
   });
 
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn("grid gap-2", className)} id="step-5">
       <Popover>
         <PopoverTrigger asChild>
           <Button

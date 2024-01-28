@@ -5,7 +5,7 @@ export const settingsData = [
     {
       title: 'Administrador',
       icon: BiUser,
-      content: ['Configuração', 'Usuários'],
+      content: ['Configuração'],
     },
 
   ];
