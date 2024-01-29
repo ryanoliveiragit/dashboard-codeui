@@ -4,7 +4,6 @@ import { AsideNotify } from "@/components/aside-notify";
 import { Header } from "@/components/header";
 import { Loading } from "@/components/loading/loading";
 import { Sidebar } from "@/components/sidebar";
-import { Fodase } from "@/lib/recentItens";
 import { TabSelectContext } from "@/shared/context/aside";
 import { useGetPathname } from "@/shared/hooks/usePathname";
 import { useContext, useEffect, useState } from "react";
