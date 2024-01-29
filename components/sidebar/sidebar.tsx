@@ -22,7 +22,7 @@ import { settingsData } from "@/lib/settings-links";
 import { SidebarContext, TabSelectContext } from "@/shared/context/aside";
 import Cookie from "js-cookie";
 import Link from "next/link";
-import { Fodase } from "@/lib/testao";
+import { RecentItens } from "@/lib/recentItens";
 
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
@@ -32,7 +32,7 @@ export const Sidebar = () => {
     Cookie.remove("auth_token");
     router.push("auth");
   }
-  const recentData = Fodase();
+ 
   const [buttonStyles, setButtonStyles] = useState<
     Record<string, React.CSSProperties>
   >(
@@ -93,7 +93,7 @@ export const Sidebar = () => {
 
                     <TabsContent key={"recents"} value={"Recentes"}>
                       <ul className="flex flex-col gap-3 px-2">
-                        <Fodase />
+                        <RecentItens />
                       </ul>
                     </TabsContent>
                   </Tabs>

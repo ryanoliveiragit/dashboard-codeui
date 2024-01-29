@@ -35,7 +35,7 @@ export const Admin: React.FC = () => {
    
       <aside className="h-full ml-80 w-full">
       {UsePath}
-   
+  
       </aside>
     </section>
   );
