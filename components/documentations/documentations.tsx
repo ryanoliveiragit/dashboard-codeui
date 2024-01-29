@@ -10,6 +10,19 @@ import dynamic from "next/dynamic";
 
 export const Documentations = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [onboardingCompleted, setOnboardingCompleted] = useState(false);
+
+  useEffect(() => {
+    const onboardingCompleted = localStorage.getItem(
+      "onboardingDocumentCompleted"
+    );
+    if (!onboardingCompleted) {
+      localStorage.setItem("onboardingDocumentCompleted", "true");
+      setOnboardingCompleted(false);
+    } else {
+      setOnboardingCompleted(true);
+    }
+  }, []);
 
   useEffect(() => {
     // Simulação de uma requisição assíncrona que leva 2 segundos
@@ -23,7 +36,7 @@ export const Documentations = () => {
 
   return (
     <>
-      <OnboardingDocuments />
+      {!onboardingCompleted && <OnboardingDocuments />}
       <section className="flex flex-col gap-6">
         {isLoading ? (
           <Skeleton className="mt-2 w-full h-[150px]" />

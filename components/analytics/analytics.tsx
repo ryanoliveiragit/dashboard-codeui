@@ -14,16 +14,28 @@ import dynamic from "next/dynamic";
 
 export const AnalyticsContent = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    const hasVisitedHomePage = localStorage.getItem("final");
+
+    if (hasVisitedHomePage) {
+      setDisplay(false); // Definir display como false após a primeira exibição
+    } else {
+      localStorage.setItem("final", "true");
+    }
+  }, []);
+
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
     return () => clearTimeout(timeoutId);
   }, []);
-
   return (
     <>
-      <OnboardingAnalytics />
+      {display && <OnboardingAnalytics />}
       <section className="grid grid-cols-3 grid-rows-2 gap-4 overflow-x-auto">
         <div
           className="border rounded-md  bg-accent border-accent lg:col-span-3 md:col-span-3 fscreen:col-span-2 md:cols-span-3"

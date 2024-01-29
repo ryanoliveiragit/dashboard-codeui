@@ -19,7 +19,19 @@ export const Expenses = () => {
   const { percentageRemainingHost, messageHost } = useExpirationHost();
   const { percentageRemainingTryalSuporte, messageTryalSuporte } =
     useTrialSuporte();
+  const [onboardingCompleted, setOnboardingCompleted] = useState(false);
 
+  useEffect(() => {
+    const onboardingCompleted = localStorage.getItem(
+      "onboardingDespesasCompleted"
+    );
+    if (!onboardingCompleted) {
+      localStorage.setItem("onboardingDespesasCompleted", "true");
+      setOnboardingCompleted(false);
+    } else {
+      setOnboardingCompleted(true);
+    }
+  }, []);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +46,7 @@ export const Expenses = () => {
 
   return (
     <section>
-      <OnboardingDespesas />
+      {!onboardingCompleted && <OnboardingDespesas />}
       {isLoading ? (
         <Skeleton className="mt-6 w-full h-[190px]" />
       ) : (
