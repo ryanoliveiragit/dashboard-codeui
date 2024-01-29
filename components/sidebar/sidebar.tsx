@@ -22,6 +22,7 @@ import { settingsData } from "@/lib/settings-links";
 import { SidebarContext, TabSelectContext } from "@/shared/context/aside";
 import Cookie from "js-cookie";
 import Link from "next/link";
+import { Fodase } from "@/lib/testao";
 
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
@@ -31,6 +32,7 @@ export const Sidebar = () => {
     Cookie.remove("auth_token");
     router.push("auth");
   }
+  const recentData = Fodase();
   const [buttonStyles, setButtonStyles] = useState<
     Record<string, React.CSSProperties>
   >(
@@ -89,21 +91,11 @@ export const Sidebar = () => {
                       ))}
                     </TabsList>
 
-                    {Object.entries(tabData).map(([tabName, tabContent]) => (
-                      <TabsContent key={tabName} value={tabName}>
-                        <ul className="flex flex-col gap-3 px-2">
-                          {tabContent.map((item, index) => (
-                            <li
-                              key={index}
-                              className="flex items-center gap-4 text-[14px]"
-                            >
-                              <FaCircle size={5} color={item.color} />{" "}
-                              {item.text}
-                            </li>
-                          ))}
-                        </ul>
-                      </TabsContent>
-                    ))}
+                    <TabsContent key={"recents"} value={"Recentes"}>
+                      <ul className="flex flex-col gap-3 px-2">
+                        <Fodase />
+                      </ul>
+                    </TabsContent>
                   </Tabs>
                 </div>
 

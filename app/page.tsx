@@ -4,11 +4,8 @@ import { AsideNotify } from "@/components/aside-notify";
 import { Header } from "@/components/header";
 import { Loading } from "@/components/loading/loading";
 import { Sidebar } from "@/components/sidebar";
-import Teste from "@/components/onboarding/analytics";
-
 import { TabSelectContext } from "@/shared/context/aside";
 import { useGetPathname } from "@/shared/hooks/usePathname";
-
 import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
