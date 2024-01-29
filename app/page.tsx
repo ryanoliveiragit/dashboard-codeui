@@ -11,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
 export default function Home() {
   const { selectedTab } = useContext(TabSelectContext)!;
   const UsePath = useGetPathname(selectedTab);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
