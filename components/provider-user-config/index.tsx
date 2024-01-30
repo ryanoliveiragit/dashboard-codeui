@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { AvatarUser } from "../profile/avatar";
 import { Button } from "../ui/button";
 
 type ProviderUserConfigType = {
@@ -36,7 +35,7 @@ export const ProviderUserConfig = ({
       </div>
       <footer className="border w-full p-5 rounded-b-md text-sm text-muted-foreground flex flex-row justify-between items-center">
         {footer}
-        {action ? <Button className="h-8" variant="outline">Salvar</Button> : ""}
+        {action ? <Button className="h-8" variant="outline" type="submit" onClick={action}>Salvar</Button> : ""}
       </footer>
     </section>
   );

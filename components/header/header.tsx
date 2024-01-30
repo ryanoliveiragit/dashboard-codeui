@@ -11,7 +11,6 @@ import { useContext, useState } from "react";
 import { Button } from "../ui/button";
 import { ToastDemo } from "../toast/toast";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Badge } from "../ui/badge";
 
 export const Header = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;

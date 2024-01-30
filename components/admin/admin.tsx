@@ -1,8 +1,6 @@
 "use client";
 import { adminData } from "@/lib/admin-links";
 import { useState } from "react";
-import { UserProfile } from "../profile";
-import { AvatarUser } from "../profile/avatar";
 import { useGetPathnameAdminConfig } from "@/shared/hooks/usePathname";
 import { Badge } from "../ui/badge";
 interface AdminItem {

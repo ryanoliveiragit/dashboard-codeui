@@ -1,15 +1,9 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { BiBell } from "react-icons/bi";
-
 import React, {
-  ReactNode,
-  createContext,
   useState,
-  Dispatch,
-  SetStateAction,
   useContext,
-  useEffect,
 } from "react";
 import { Button } from "../ui/button";
 import { RxHamburgerMenu } from "react-icons/rx";
