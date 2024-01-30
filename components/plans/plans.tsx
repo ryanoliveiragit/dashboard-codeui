@@ -58,7 +58,7 @@ export function Plans({ className, ...props }: CardProps) {
   const [activePlan, setActivePlan] = useState("Pro");
 
   return (
-    <section className="flex flex-row ml-40 flex-wrap gap-10">
+    <section className="flex flex-row ml-20 flex-wrap gap-10">
       {plans.map((plan, index) => (
         <Card
           key={index}
