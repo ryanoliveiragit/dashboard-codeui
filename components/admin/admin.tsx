@@ -4,17 +4,19 @@ import { useState } from "react";
 import { UserProfile } from "../profile";
 import { AvatarUser } from "../profile/avatar";
 import { useGetPathnameAdminConfig } from "@/shared/hooks/usePathname";
+import { Badge } from "../ui/badge";
 interface AdminItem {
   title: string;
 }
 
 export const Admin: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Geral");
+
   const UsePath = useGetPathnameAdminConfig(selectedItem);
   const handleItemClick = (index: number) => {
     setSelectedItem(adminData.config[index].title);
   };
-
+  const [newTab, setNewTab] = useState("Planos");
   return (
     <section className="flex flex-row relative">
       <ul className="flex flex-col gap-2 w-1/6 fixed pr-5">
@@ -28,15 +30,22 @@ export const Admin: React.FC = () => {
             }`}
             onClick={() => handleItemClick(index)}
           >
-            {item.title}
+            {item.title === "Planos" ? (
+              <div className="flex items-center gap-2">
+                  <span>{newTab}</span>
+                <Badge variant="default" className="mr-2 h-4 text-[10px] font-bold">
+                NEW
+                </Badge>
+              
+              </div>
+            ) : (
+              <span>{item.title}</span>
+            )}
           </li>
         ))}
       </ul>
-   
-      <aside className="h-full ml-80 w-full">
-      {UsePath}
-  
-      </aside>
+
+      <aside className="h-full ml-80 w-full">{UsePath}</aside>
     </section>
   );
 };

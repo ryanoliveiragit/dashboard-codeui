@@ -14,7 +14,7 @@ interface SidebarNotifyContextProps {
 }
 
 export function SidebarNotifyProvider({ children }: SidebarNotifyContextProps) {
-  const [isOpenNotify, setIsOpenNotify] = useState(true);
+  const [isOpenNotify, setIsOpenNotify] = useState(false);
 
   return (
     <SidebarNotifyContext.Provider value={{ isOpenNotify, setIsOpenNotify }}>
@@ -58,7 +58,7 @@ type SidebarContextType = {
   }
   
   export function TabSelectProvider({ children }: TabSelectContextProps) {
-    const [selectedTab, setSelectedTab] = useState('Documentação');
+    const [selectedTab, setSelectedTab] = useState('Analitycs');
   
     return (
       <TabSelectContext.Provider value={{ selectedTab, setSelectedTab }}>

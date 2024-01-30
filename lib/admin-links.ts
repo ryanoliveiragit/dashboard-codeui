@@ -2,7 +2,7 @@ export const adminData = {
     config: [
       { title: 'Geral'},
       { title: 'Autenticação'},
-      { title: 'Cobrança'},
+      { title: 'Planos'},
       { title: 'Faturas'},
       { title: 'Notificações'},
     ],

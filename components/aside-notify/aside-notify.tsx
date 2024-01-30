@@ -9,16 +9,24 @@ import React, {
   Dispatch,
   SetStateAction,
   useContext,
+  useEffect,
 } from "react";
 import { Button } from "../ui/button";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { SidebarNotifyContext } from "@/shared/context/aside";
+import { SidebarNotifyContext, TabSelectContext } from "@/shared/context/aside";
 import { AvatarUser } from "../profile/avatar";
+import { Badge } from "../ui/badge";
 
 export const AsideNotify = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
-
+  const { setSelectedTab } = useContext(TabSelectContext)!;
+  const [newItem, setNewItem] = useState<string[]>(["Planos"]);
   const handleClose = () => setIsOpenNotify(false);
+
+  const handleItemClick = (clickedItem: string) => {
+    setSelectedTab(clickedItem);
+    console.log(clickedItem);
+  };
 
   return (
     <div className="flex">
@@ -44,44 +52,24 @@ export const AsideNotify = () => {
                     <AvatarUser avatarUrl="" />
 
                     <div className="flex flex-col ">
-                      <div className="flex flex-row gap-2">
-                        <h3 className="text-sm text-primay">Corrigiu um</h3>
+                      <div className="flex flex-row gap-2 justify-center items-center flex-1">
+                        <h3 className="text-sm text-primay">Adicionou</h3>
                         <span className="font-bold text-primary text-sm -ml-[3px]">
-                          bug
+                          {newItem &&
+                            newItem.map((item: any, index: any) => (
+                              <Badge
+                                key={index}
+                                variant="outline"
+                                className="h-5 items-center flex justify-center text-[11px] cursor-pointer"
+                                onClick={() => handleItemClick(item)}
+                              >
+                                {item}
+                              </Badge>
+                            ))}
                         </span>
                       </div>
                       <span className="text-sm text-muted-foreground">
                         agora
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex gap-2 items-center">
-                  <AvatarUser avatarUrl="" />
-
-                    <div className="flex flex-col ">
-                      <div className="flex flex-row gap-2">
-                        <h3 className="text-sm text-primay">Baixou</h3>
-                        <span className="font-bold text-primary text-sm -ml-[3px]">
-                          [Storybook.pdf]
-                        </span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        há 2 horas
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex gap-2 items-center">
-                  <AvatarUser avatarUrl="" />
-
-                    <div className="flex flex-col ">
-                      <div className="flex flex-row gap-2">
-                        <h3 className="text-sm text-primay">Cadastrou</h3>
-                        <span className="font-bold text-primary text-sm -ml-[3px]">
-                          Novo usuário
-                        </span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        ha 4 horas
                       </span>
                     </div>
                   </div>

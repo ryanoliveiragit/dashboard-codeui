@@ -7,16 +7,23 @@ import {
   SidebarNotifyContext,
   TabSelectContext,
 } from "@/shared/context/aside";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button } from "../ui/button";
 import { ToastDemo } from "../toast/toast";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { Badge } from "../ui/badge";
 
 export const Header = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
   const { selectedTab } = useContext(TabSelectContext)!;
+  const [notify, setNotify] = useState(1);
   console.log(selectedTab);
+
+  function handleClickNotify() {
+    setIsOpenNotify(true);
+    setNotify(0);
+  }
   return (
     <header className="bg-background p-[28px] w-full flex-shrink-0 flex items-center h-[5.5rem] border-b-2 border-secondary">
       <ul className="flex justify-between w-full">
@@ -55,8 +62,19 @@ export const Header = () => {
           {isOpenNotify ? (
             ""
           ) : (
-            <Button variant="ghost" onClick={() => setIsOpenNotify(true)}>
-              <CiBellOn size={20} />
+            <Button
+              variant="ghost"
+              onClick={handleClickNotify}
+              className="relative"
+            >
+              <CiBellOn size={25} />
+              {notify === 0 ? (
+                ""
+              ) : (
+                <span className="bg-red-500 text-white rounded-full absolute top-[5px] flex items-center justify-center right-[10px] w-4 h-4 text-[10px]">
+                  {notify}
+                </span>
+              )}
             </Button>
           )}
         </div>
