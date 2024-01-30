@@ -46,7 +46,7 @@ export const AsideNotify = () => {
                   <BiBell /> Notificações
                 </h1>
 
-                {/*teste*/}
+                {/*tested*/}
                 <section className="flex flex-col gap-4 mt-5">
                   <div className="mt-5 flex gap-2 items-center">
                     <AvatarUser avatarUrl="" />
