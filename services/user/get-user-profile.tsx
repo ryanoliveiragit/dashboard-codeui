@@ -27,7 +27,7 @@ export const useUserProfile = () => {
     const token = Cookies.get("auth_token");
     if (token) {
       axios
-        .get("https://codeui-api-development.up.railway.app/api/user", {
+        .get("https://codeui-api-production.up.railway.app/api/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

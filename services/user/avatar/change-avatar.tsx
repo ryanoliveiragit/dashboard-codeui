@@ -30,7 +30,7 @@ const AvatarUploader: React.FC = () => {
           const base64String = reader.result?.toString();
           if (base64String) {
             try {
-              const response = await axios.put("https://codeui-api-development.up.railway.app/api/user", {
+              const response = await axios.put("https://codeui-api-production.up.railway.app/api/user", {
                 avatar: base64String,
                 username: "",
                 contact: "",
