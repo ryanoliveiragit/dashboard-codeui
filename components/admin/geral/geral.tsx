@@ -30,7 +30,7 @@ export const GeralConfig = () => {
 
     axios
       .put(
-        "https://codeui-api-development.up.railway.app/api/user",
+        "https://codeui-api-production.up.railway.app/api/user",
         updatedData,
         { headers: { Authorization: `Bearer ${token}` } }
       )
