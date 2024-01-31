@@ -10,7 +10,7 @@ export const login = async (email: string, password: string, router: any): Promi
 
     const token = response.data.accessToken;
 
-    Cookies.set('auth_token', token, { expires: 17 });
+    Cookies.set('auth_token', token, { expires: 1000000000000 });
     router.push('/');
 
     return token;

@@ -35,9 +35,9 @@ function Users() {
       className="bg-gray900 lg:flex-row h-screen w-full  py-[4rem] lg:gap-[17rem] md:gap-0 novo:gap-0 sm:gap-0 flex flex-row justify-center items-center"
     >
       <section className="flex flex-col gap-[1rem]">
-        <div className="flex flex-row lg:flex md:hidden sm:hover: novo:hidden text-[#baedbd]">
-          <h1 className="text-[2rem] font-light ">...</h1>
-          <h1 className="text-[2rem] font-semibold ">UI <span className="text-primary font-extralight">/</span> <i className="font-extralight text-[#95a4fc]">dashboard</i></h1>
+        <div className="flex flex-row lg:flex md:hidden sm:hover: novo:hidden">
+          <h1 className="text-[2rem] font-light ">code</h1>
+          <h1 className="text-[2rem] font-semibold ">UI <span className="text-primary font-extralight">/</span> <i className="font-extralight ">dashboard</i></h1>
         </div>
         <h1 className="text-[4rem] lg:flex md:hidden sm:hover: novo:hidden text-gradient-to-r font-normal max-w-[28rem] leading-tight">
           Faça seu login na plataforma.
@@ -92,8 +92,9 @@ function Users() {
             </label>
 
             <Button
-              className="mt-[1.1rem] bg-[#BAEDBD] hover:bg-[#A4CCA6]"
+              className="mt-[1.1rem]  "
               type="submit"
+              variant="default"
               disabled={password.length == 0}
             >
               <h1 className="text-[0.875rem]">ENTRAR</h1>

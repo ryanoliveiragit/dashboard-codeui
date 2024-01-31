@@ -1,8 +1,6 @@
-"use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie"; // Certifique-se de instalar o pacote js-cookie
-import { Button } from "@/components/ui/button";
+import Cookies from "js-cookie";
 import { useToast } from "@/components/ui/use-toast";
 
 export interface UserData {
@@ -15,39 +13,50 @@ export interface UserData {
   avatar: string;
   preferred_currency: string;
   created_at: string;
+  favorites: any,
+  [key: string]: string;
 }
 
 export const useUserProfile = () => {
   const [data, setData] = useState<UserData | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento inicial
+  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
-  useEffect(() => {
+
+  const fetchUserData = () => {
     const token = Cookies.get("auth_token");
     if (token) {
       axios
-        .get("https://codeui-api-production.up.railway.app/api/user", {
+        .get("https://codeui-api-development.up.railway.app/api/user", {
           headers: {
-            Authorization: `Bearer ${token}`, // Inclua o token no cabeçalho
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
           setData(response.data);
-          setLoading(false); // Definir o carregamento como falso após a conclusão da requisição
+          setLoading(false);
         })
         .catch((err) => {
           setError(err.message);
-
-          toast({
-            variant: "destructive",
-            title: "Processo não conclúido",
-            description: `Erro: Sem autorização (Por favor relogue)`,
-          });
-
-          setLoading(false); // Definir o carregamento como falso em caso de erro
+          setLoading(false);
         });
     }
-  }, []); // Adicione setData e setError como dependências do useEffect para evitar avisos do ESLint
+  };
 
-  return { data, loading, error };
+  useEffect(() => {
+    fetchUserData(); // Chama a função uma vez quando o componente é montado
+  }, []);
+
+  // useEffect(() => {
+  //   const interval = setInterval(fetchUserData, 10000); // Atualiza a cada 10 segundos
+  //   return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+  // }, []);
+
+  useEffect(() => {
+    if (data && data.username) {
+      fetchUserData(); // Se o nome de usuário mudar, busca os dados imediatamente
+    }
+  }, [data?.username]);
+
+  return { data, loading, setLoading, error, fetchUserData };
 };
