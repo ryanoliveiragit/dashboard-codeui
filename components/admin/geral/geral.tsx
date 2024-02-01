@@ -200,13 +200,7 @@ export const GeralConfig = () => {
                   <div className="text-primary">
                     <div className="flex items-center justify-center flex-col">
                       {preview ? (
-                        <Avatar
-                        width={150}
-                        height={150}
-                        onCrop={onCrop}
-                        onClose={onClose}
-                        src={src}
-                      />
+                         <span> {preview && <img src={preview} />}</span>
                       ) : (
                         <AvatarUser
                           size="w-[100px] h-[100px]"
@@ -218,9 +212,8 @@ export const GeralConfig = () => {
                         variant="outline"
                         onClick={handleOpenModal}
                         type="button"
-    
                       >
-                        Alterar avatar
+                       Selecionar Avatar
                       </Button>
                     </div>
 
