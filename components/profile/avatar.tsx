@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserProfile } from "@/services/user/get-user-profile";
+import { useEffect } from "react";
 
 
 type AvatarUserType = {
@@ -8,10 +9,11 @@ type AvatarUserType = {
 };
 
 export const AvatarUser = ({ size, avatarUrl }: AvatarUserType) => {
-  const { data, loading, error } = useUserProfile();
+  const { data } = useUserProfile();
+
   return (
     <Avatar className={size}>
-      <AvatarImage src={avatarUrl} />
+      <AvatarImage src={data?.avatar} />
       <AvatarFallback>{data?.username}</AvatarFallback>
     </Avatar>
   );

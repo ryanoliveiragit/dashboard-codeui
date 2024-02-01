@@ -27,7 +27,7 @@ export const useUserProfile = () => {
     const token = Cookies.get("auth_token");
     if (token) {
       axios
-        .get("https://codeui-api-production.up.railway.app/api/user", {
+        .get("https://codeui-api-development.up.railway.app/api/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -52,11 +52,7 @@ export const useUserProfile = () => {
   //   return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
   // }, []);
 
-  useEffect(() => {
-    if (data && data.username) {
-      fetchUserData(); // Se o nome de usuário mudar, busca os dados imediatamente
-    }
-  }, [data?.username]);
+
 
   return { data, loading, setLoading, error, fetchUserData };
 };

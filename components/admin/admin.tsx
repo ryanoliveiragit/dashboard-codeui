@@ -31,7 +31,7 @@ export const Admin: React.FC = () => {
             {item.title === "Planos" ? (
               <div className="flex items-center gap-2">
                   <span>{newTab}</span>
-                <Badge variant="default" className="mr-2 h-4 text-[10px] font-bold">
+                <Badge variant="default" className="mr-2 h-4 text-[10px] font-bold bg-third">
                 NEW
                 </Badge>
               

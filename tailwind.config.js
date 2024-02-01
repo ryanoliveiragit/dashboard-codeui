@@ -34,6 +34,7 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        third: "hsl(var(--third))",
         card: "hsl(var(--card))",
         primary: {
           DEFAULT: "hsl(var(--primary))",

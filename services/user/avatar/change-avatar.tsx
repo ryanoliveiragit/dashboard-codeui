@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AvatarUser } from "@/components/profile/avatar";
 import Cookies from 'js-cookie';
+import { SidebarContext, SidebarNotifyContext } from "@/shared/context/aside";
 
 const AvatarUploader: React.FC = () => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const token = Cookies.get("auth_token");
+  const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
+  const { isOpen, setIsOpen } = useContext(SidebarContext)!;
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -17,42 +20,31 @@ const AvatarUploader: React.FC = () => {
     }
   };
 
-  const handleClickAvatar = () => {
-    const fileInput = document.getElementById("file-input");
-    if (fileInput) fileInput.click();
-  };
-
   const handleFileSubmit = async () => {
     if (file) {
       try {
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64String = reader.result?.toString();
-          if (base64String) {
-            try {
-              const response = await axios.put("https://codeui-api-production.up.railway.app/api/user", {
-                avatar: base64String,
-                username: "",
-                contact: "",
-                preferred_currency: "BR",
-              }, {
-                headers: {
-                  "Content-Type": "application/json",
-                  "Authorization": `Bearer ${token}`,
-                },
-              });
-  
-              console.log("Perfil atualizado com sucesso:", response.data);
-              // Lógica adicional após a atualização do perfil, se necessário
-            } catch (error) {
-              console.error("Erro ao atualizar o perfil:", error);
-              // Tratamento de erro, se necessário
-            }
-          }
-        };
-        reader.readAsDataURL(file);
+        const formData = new FormData();
+        formData.append("avatar", file);
+
+        const response = await axios.patch("https://codeui-api-development.up.railway.app/api/user/avatar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        console.log("Perfil atualizado com sucesso:", response.data);
+        // Alterar o estado para aberto temporariamente
+        setIsOpenNotify(!isOpenNotify);
+        setIsOpen(!setIsOpen);
+
+        // Após 1 segundo, reverter ao estado original
+        setTimeout(() => {
+          setIsOpenNotify(!isOpenNotify);
+          setIsOpen(!setIsOpen);
+        }, 1000);
       } catch (error) {
-        console.error("Erro ao ler o arquivo:", error);
+        console.error("Erro ao atualizar o perfil:", error);
         // Tratamento de erro, se necessário
       }
     }
@@ -66,12 +58,10 @@ const AvatarUploader: React.FC = () => {
         style={{ display: "none" }}
         onChange={handleFileUpload}
       />
-      <div onClick={handleClickAvatar} className="cursor-pointer w-[175px] h-[175px]">
-        <AvatarUser  avatarUrl={"avatarUrl"} />
+      <div onClick={() => document.getElementById("file-input")?.click()} className="cursor-pointer w-[175px] h-[175px]">
+        <AvatarUser avatarUrl={avatarUrl} />
       </div>
-      <div>
-       
-      </div>
+      <button onClick={handleFileSubmit}>Enviar</button>
     </div>
   );
 };

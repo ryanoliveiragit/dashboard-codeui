@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --card: #2ee76b;
+    --third: 72 100% 50.9%;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -29,8 +29,11 @@
   circle {
     display: none;
   }
+  .avatar-edit-btn {
+    color: white; /* Define a cor do texto como branco */
+  }
   .dark {
-    --card: #e23b3b;
+    --third: 72 100% 50%;
     --background: 0 0% 5.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
