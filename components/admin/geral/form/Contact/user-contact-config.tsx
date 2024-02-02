@@ -37,7 +37,7 @@ export const UserContactConfig = () => {
   const contactValue = watch("contact");
   const handleUpdateProfile = (data: contactFormInputs) => {
     axios
-      .put("https://codeui-api-development.up.railway.app/api/user", data, {
+      .put("https://codeui-api-prodction.up.railway.app/api/user", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
