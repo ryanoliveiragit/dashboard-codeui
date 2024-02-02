@@ -7,7 +7,7 @@ import {
   TabSelectProvider,
 } from "@/shared/context/aside";
 import { Toaster } from "@/components/ui/toaster";
-
+import { LoadingProvider } from "@/shared/context/loading";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,25 +23,25 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <head />
       <body>
-
-        <SidebarNotifyProvider>
-          <SidebarProvider>
-            <TabSelectProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="dark"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <div className="w-full flex">
-                  {children}
-                  <Toaster />
-                </div>
-              </ThemeProvider>
-            </TabSelectProvider>
-          </SidebarProvider>
-        </SidebarNotifyProvider>
-     
+        <LoadingProvider>
+          <SidebarNotifyProvider>
+            <SidebarProvider>
+              <TabSelectProvider>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="dark"
+                  enableSystem
+                  disableTransitionOnChange
+                >
+                  <div className="w-full flex">
+                    {children}
+                    <Toaster />
+                  </div>
+                </ThemeProvider>
+              </TabSelectProvider>
+            </SidebarProvider>
+          </SidebarNotifyProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

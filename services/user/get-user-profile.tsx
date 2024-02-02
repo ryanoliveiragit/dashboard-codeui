@@ -13,7 +13,7 @@ export interface UserData {
   avatar: string;
   preferred_currency: string;
   created_at: string;
-  favorites: any,
+  favorites: any;
   [key: string]: string;
 }
 
@@ -23,36 +23,32 @@ export const useUserProfile = () => {
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
-  const fetchUserData = () => {
-    const token = Cookies.get("auth_token");
-    if (token) {
-      axios
-        .get("https://codeui-api-development.up.railway.app/api/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = Cookies.get("auth_token");
+      
+      if (token) {
+        try {
+          const response = await axios.get("https://codeui-api-production.up.railway.app/api/user", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           setData(response.data);
           setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
+        } catch (err: any) {
+          if (axios.isAxiosError(err)) {
+            setError(err.message);
+          } else {
+            setError("Erro desconhecido ao buscar dados do usuário.");
+          }
           setLoading(false);
-        });
-    }
-  };
+        }
+      }
+    };
 
-  useEffect(() => {
-    fetchUserData(); // Chama a função uma vez quando o componente é montado
+    fetchUserData();
   }, []);
 
-  // useEffect(() => {
-  //   const interval = setInterval(fetchUserData, 10000); // Atualiza a cada 10 segundos
-  //   return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
-  // }, []);
-
-
-
-  return { data, loading, setLoading, error, fetchUserData };
+  return { data, loading, error };
 };
