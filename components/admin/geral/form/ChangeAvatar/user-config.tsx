@@ -77,7 +77,7 @@ export const UserConfigurations = () => {
         formData.append("avatar", file);
 
         const response = await axios.patch(
-          "https://codeui-api-prodction.up.railway.app/api/user/avatar",
+          "https://codeui-api-production.up.railway.app/api/user/avatar",
           formData,
           {
             headers: {
@@ -105,7 +105,7 @@ export const UserConfigurations = () => {
     handleFileSubmit();
 
     axios
-      .put("https://codeui-api-prodction.up.railway.app/api/user", data, {
+      .put("https://codeui-api-production.up.railway.app/api/user", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

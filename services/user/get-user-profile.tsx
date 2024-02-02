@@ -28,7 +28,7 @@ export const useUserProfile = () => {
       
       if (token) {
         try {
-          const response = await axios.get("https://codeui-api-prodction.up.railway.app/api/user", {
+          const response = await axios.get("https://codeui-api-production.up.railway.app/api/user", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
