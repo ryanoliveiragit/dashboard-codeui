@@ -36,7 +36,7 @@ export const UserCurrencyConfig = () => {
   const handleUpdateProfile = () => {
     axios
       .patch(
-        "https://codeui-api-production.up.railway.app/api/currency",
+        "https://codeui-api-development.up.railway.app/api/currency",
         selectedCurrency,
         {
           headers: { Authorization: `Bearer ${token}` },
