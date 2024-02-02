@@ -1,3 +1,4 @@
+"use client"
 import { useUserProfile } from "@/services/user/get-user-profile";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";

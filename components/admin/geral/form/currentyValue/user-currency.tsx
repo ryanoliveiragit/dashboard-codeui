@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -27,8 +28,6 @@ export const UserCurrencyConfig = () => {
   const {
     formState: { errors },
     handleSubmit,
-
-    watch,
   } = useForm();
   console.log(selectedCurrency);
   const { formErrors } = useToastError({ errors });
@@ -37,7 +36,7 @@ export const UserCurrencyConfig = () => {
   const handleUpdateProfile = () => {
     axios
       .patch(
-        "https://codeui-api-production.up.railway.app/api/currency",
+        "https://codeui-api-development.up.railway.app/api/currency",
         selectedCurrency,
         {
           headers: { Authorization: `Bearer ${token}` },

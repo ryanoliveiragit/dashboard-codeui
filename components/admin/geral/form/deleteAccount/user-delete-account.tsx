@@ -1,19 +1,6 @@
-import { useUserProfile } from "@/services/user/get-user-profile";
-import { useToast } from "@/components/ui/use-toast";
+"use client"
 import { Button } from "@/components/ui/button";
-import { MdContentCopy } from "react-icons/md";
-
 export const DeleteAccount = () => {
-  const { toast } = useToast();
-  const { data } = useUserProfile();
-
-  const handleUpdateProfile = () => {
-    toast({
-      variant: "default",
-      title: "Copiado para area de transferencia",
-      description: "codeID",
-    });
-  };
 
   return (
     <section>

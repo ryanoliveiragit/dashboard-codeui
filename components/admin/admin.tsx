@@ -6,8 +6,7 @@ import { Badge } from "../ui/badge";
 interface AdminItem {
   title: string;
 }
-
-export const Admin: React.FC = () => {
+export const Admin = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Geral");
 
   const UsePath = useGetPathnameAdminConfig(selectedItem);

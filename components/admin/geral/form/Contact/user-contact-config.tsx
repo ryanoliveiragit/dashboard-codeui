@@ -1,12 +1,10 @@
-import { ProviderUserConfig } from "@/components/provider-user-config";
-import { useState } from "react";
+"use client"
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useUserProfile } from "@/services/user/get-user-profile";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useToastError } from "@/shared/hooks/useErrorsInputForm";
 import InputMask from "react-input-mask";
@@ -39,7 +37,7 @@ export const UserContactConfig = () => {
   const contactValue = watch("contact");
   const handleUpdateProfile = (data: contactFormInputs) => {
     axios
-      .put("https://codeui-api-production.up.railway.app/api/user", data, {
+      .put("https://codeui-api-development.up.railway.app/api/user", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <head />
       <body>
-     
+        <LoadingProvider>
           <SidebarNotifyProvider>
             <SidebarProvider>
               <TabSelectProvider>
@@ -41,7 +41,7 @@ export default function RootLayout({
               </TabSelectProvider>
             </SidebarProvider>
           </SidebarNotifyProvider>
-    
+        </LoadingProvider>
       </body>
     </html>
   );

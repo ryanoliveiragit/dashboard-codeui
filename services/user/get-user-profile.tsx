@@ -1,8 +1,7 @@
+"use client"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useToast } from "@/components/ui/use-toast";
-
 export interface UserData {
   id: string;
   username: string;
@@ -21,7 +20,7 @@ export const useUserProfile = () => {
   const [data, setData] = useState<UserData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,7 +28,7 @@ export const useUserProfile = () => {
       
       if (token) {
         try {
-          const response = await axios.get("https://codeui-api-production.up.railway.app/api/user", {
+          const response = await axios.get("https://codeui-api-development.up.railway.app/api/user", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

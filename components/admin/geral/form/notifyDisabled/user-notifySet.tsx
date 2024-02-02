@@ -1,7 +1,5 @@
+"use client"
 import { useState } from "react";
-import Cookies from "js-cookie";
-import axios from "axios";
-import { useUserProfile } from "@/services/user/get-user-profile";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { useToastError } from "@/shared/hooks/useErrorsInputForm";

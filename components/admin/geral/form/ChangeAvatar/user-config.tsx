@@ -1,5 +1,5 @@
-import { GrFormUpload } from "react-icons/gr";
-import { useEffect, useState } from "react";
+"use client"
+import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { AvatarUser } from "@/components/profile/avatar";
@@ -9,11 +9,14 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import Avatar from "react-avatar-edit";
+
 import { useToast } from "@/components/ui/use-toast";
 import { useToastError } from "@/shared/hooks/useErrorsInputForm";
-import Image from "next/image";
+const Avatar = dynamic(() => import("react-avatar-edit"), {
+  ssr: false,
+});
 import { useLoadingContext } from "@/shared/context/loading";
+import dynamic from "next/dynamic";
 const usernameSchema = z.object({
   username: z
     .string()
@@ -27,11 +30,10 @@ type usernameFormInputs = z.infer<typeof usernameSchema>;
 export const UserConfigurations = () => {
   const { toast } = useToast();
   const { data } = useUserProfile();
-  const { refresh, setRefresh } = useLoadingContext();
+  const { setRefresh } = useLoadingContext();
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [src, setSrc] = useState<any | null>(null);
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const [preview, setPreview] = useState<any | null>(null);
   const token = Cookies.get("auth_token");
   const {
@@ -45,9 +47,7 @@ export const UserConfigurations = () => {
   const { formErrors } = useToastError({ errors });
   const nameValue = watch("username");
   console.log(formErrors);
-  function handleOpenModal() {
-    setIsOpenModal(!isOpenModal);
-  }
+
   const onClose = () => {
     setPreview(null);
   };
@@ -77,7 +77,7 @@ export const UserConfigurations = () => {
         formData.append("avatar", file);
 
         const response = await axios.patch(
-          "https://codeui-api-production.up.railway.app/api/user/avatar",
+          "https://codeui-api-development.up.railway.app/api/user/avatar",
           formData,
           {
             headers: {
@@ -105,7 +105,7 @@ export const UserConfigurations = () => {
     handleFileSubmit();
 
     axios
-      .put("https://codeui-api-production.up.railway.app/api/user", data, {
+      .put("https://codeui-api-development.up.railway.app/api/user", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -163,7 +163,8 @@ export const UserConfigurations = () => {
                       />
                       <div className="absolute rounded-md">
                         <Avatar
-                          label={""}
+                        
+                          label={"."}
                           labelStyle={{
                             color: "white",
                             display: "flex",
