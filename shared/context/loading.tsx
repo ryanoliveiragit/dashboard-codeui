@@ -1,15 +1,11 @@
 "use client";
 import React, { ReactNode, createContext, useContext, useState } from "react";
-
-// Definindo o contexto
 interface LoadingContextType {
   refresh: boolean;
   setRefresh: (value: boolean) => void;
 }
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
-
-// Hook personalizado para utilizar o contexto
 export const useLoadingContext = () => {
   const context = useContext(LoadingContext);
   if (!context) {
@@ -18,7 +14,6 @@ export const useLoadingContext = () => {
   return context;
 };
 
-// Componente provedor do contexto
 interface LoadingProviderProps {
   children: ReactNode;
 }
