@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 import { useUserProfile } from "@/services/user/get-user-profile";
 import { AvatarUser } from "./avatar";
 import { Badge } from "../ui/badge";

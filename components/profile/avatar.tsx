@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserProfile } from "@/services/user/get-user-profile";
-import { useEffect } from "react";
 
 
 type AvatarUserType = {

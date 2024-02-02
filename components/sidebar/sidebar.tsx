@@ -1,11 +1,9 @@
 "use client";
 import { UserProfile } from "../profile";
 import { AnimatePresence, motion } from "framer-motion";
-
 import React, { useState, useContext } from "react";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FaCircle } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { ImExit } from "react-icons/im";
 import {

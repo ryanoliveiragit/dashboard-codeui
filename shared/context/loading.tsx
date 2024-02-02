@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 
 // Definindo o contexto
 interface LoadingContextType {
-    refresh: boolean;
-    setRefresh: (value: boolean) => void;
+  refresh: boolean;
+  setRefresh: (value: boolean) => void;
 }
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
@@ -22,7 +22,7 @@ export const useLoadingContext = () => {
 interface LoadingProviderProps {
   children: ReactNode;
 }
-export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }: LoadingProviderProps) => {
+export function LoadingProvider({ children }: LoadingProviderProps) {
   const [refresh, setRefresh] = useState(false);
 
   return (
@@ -30,4 +30,4 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }: Lo
       {children}
     </LoadingContext.Provider>
   );
-};
+}
