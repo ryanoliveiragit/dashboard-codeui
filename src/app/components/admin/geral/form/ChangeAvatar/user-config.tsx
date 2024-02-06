@@ -54,7 +54,7 @@ export const UserConfigurations = () => {
 
     } catch (error) {
       toast({
-        variant: "danger",
+        variant: "destructive",
         title: "Perfil atualizado com sucesso!",
         description: "Username",
       });

@@ -59,7 +59,7 @@ export const UserContactConfig = () => {
       });
     } catch (error) {
       toast({
-        variant: "danger",
+        variant: "destructive",
         title: "Contato atualizado com sucesso!",
         description: "Contato",
       });

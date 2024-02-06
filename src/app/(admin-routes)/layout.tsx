@@ -7,14 +7,15 @@ import { Header } from "../components/header";
 import { AsideNotify } from "../components/aside-notify";
 import { UserProvider } from "../shared/context/userData";
 import { LoadingProvider } from "../shared/context/loading";
-import nextAuthOptions from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../api/auth/[...nextauth]";
+
 
 interface PrivateLayoutProps {
   children: ReactNode;
 }
 
 export default async function PrivateLayout({ children }: PrivateLayoutProps) {
-  const session = await getServerSession(nextAuthOptions);
+  const session = await getServerSession(authOptions);
 
   if (!session) {
     redirect("/");
