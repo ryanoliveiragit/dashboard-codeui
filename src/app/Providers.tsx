@@ -11,7 +11,7 @@ export default function NextAuthSessionProvider({
   children,
 }: NextAuthSessionProviderProps) {
   return (
-    <SessionProvider basePath="/">
+    <SessionProvider>
       {children}
     </SessionProvider>
   );
