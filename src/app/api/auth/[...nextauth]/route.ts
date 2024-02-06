@@ -1,6 +1,5 @@
-
-import NextAuth, { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const nextAuthOptions: NextAuthOptions = {
   providers: [
@@ -10,7 +9,6 @@ const nextAuthOptions: NextAuthOptions = {
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-
       async authorize(credentials, req) {
         const response = await fetch(
           "https://codeui-api-production.up.railway.app/api/user/session",
@@ -37,7 +35,7 @@ const nextAuthOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/",
+    signIn: "/", // Defina a página de login personalizada, se necessário
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -51,6 +49,4 @@ const nextAuthOptions: NextAuthOptions = {
   },
 };
 
-const handler = NextAuth(nextAuthOptions);
-
-export { handler as GET, handler as POST, nextAuthOptions };
+export default nextAuthOptions;

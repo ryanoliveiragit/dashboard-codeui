@@ -7,16 +7,10 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@/src/app/components/ui/use-toast";
 import { Input } from "@/src/app/components/ui/input";
 import { Button } from "@/src/app/components/ui/button";
-
-import { useEffect, useState } from "react";
 import { useUser } from "@/src/app/shared/context/userData";
 import { instance } from "@/src/utils/axios";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "@/src/app/api/auth/[...nextauth]/route";
+
 import { useSession } from "next-auth/react";
-import { Loading } from "@/src/app/components/loading/loading";
-import { Skeleton } from "@/src/app/components/ui/skeleton";
-import { useLoading } from "@/src/app/shared/context/loading";
 import Profile from "./profile";
 
 const usernameSchema = z.object({
