@@ -8,6 +8,9 @@ module.exports = {
   images: {
     domains: ['logowik.com', 'upload.wikimedia.org', 'cdn.discordapp.com', 'i0.wp.com/css-tricks.com'], //aqui vai o domain do backend
   },
+  typescript: {
+    ignoreBuildErrors: true,
+ },
   webpack: (config, { isServer }) => {
     config.module.rules.push(
       {

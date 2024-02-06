@@ -7,7 +7,7 @@ import { Header } from "../components/header";
 import { AsideNotify } from "../components/aside-notify";
 import { UserProvider } from "../shared/context/userData";
 import { LoadingProvider } from "../shared/context/loading";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 
 interface PrivateLayoutProps {

@@ -1,22 +1,24 @@
-import { AuthOptions } from 'next-auth';
-import NextAuth from 'next-auth/next';
-import CredentialsProvider from 'next-auth/providers/credentials';
 
-export const authOptions: AuthOptions = {
+
+import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth, { AuthOptions } from "next-auth";
+
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'credentials',
+      name: "credentials",
       credentials: {
-        email: { label: 'email', type: 'text' },
-        password: { label: 'password', type: 'password' },
+        email: { label: "email", type: "text" },
+        password: { label: "password", type: "password" },
       },
+
       async authorize(credentials, req) {
         const response = await fetch(
-          'https://codeui-api-production.up.railway.app/api/user/session',
+          "https://codeui-api-production.up.railway.app/api/user/session",
           {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-type': 'application/json',
+              "Content-type": "application/json",
             },
             body: JSON.stringify({
               email: credentials?.email,
@@ -36,7 +38,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/', // Defina a página de login personalizada, se necessário
+    signIn: "/",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -50,4 +52,6 @@ export const authOptions: AuthOptions = {
   },
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST, authOptions }
