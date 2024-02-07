@@ -2,6 +2,7 @@ import { AvatarUser } from "./avatar";
 import { Badge } from "../ui/badge";
 import { Skeleton } from "../ui/skeleton";
 import { useUser } from "../../shared/context/userData"; // Importe o hook useUser corretamente
+import { DropdownMenuDemo } from "./dropdown-menu/dropdown";
 
 export const UserProfile = () => {
   const userData = useUser(); // Use o hook useUser diretamente
@@ -27,6 +28,7 @@ export const UserProfile = () => {
             >
               {userData.plan}
             </Badge>
+            <DropdownMenuDemo />
           </div>
         </section>
       )}

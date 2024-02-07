@@ -51,7 +51,7 @@ export const UserContactConfig = () => {
           Authorization: `Bearer ${session?.accessToken}`,
         },
       });
-      location.reload();
+
       toast({
         variant: "default",
         title: "Contato atualizado com sucesso!",

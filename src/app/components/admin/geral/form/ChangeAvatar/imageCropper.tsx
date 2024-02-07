@@ -77,7 +77,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       if (!response.ok) {
         throw new Error("Failed to upload image to backend");
       }
-    //   location.reload();
+   
       console.log("Image uploaded successfully");
     } catch (error) {
       console.error("Error uploading image to backend:", error);

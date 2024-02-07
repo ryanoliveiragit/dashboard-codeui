@@ -45,7 +45,7 @@ export const UserConfigurations = () => {
           Authorization: `Bearer ${session?.accessToken}`, // Inclua o token no cabeçalho da requisição
         },
       });
-      location.reload();
+
       toast({
         variant: "default",
         title: "Perfil atualizado com sucesso!",
