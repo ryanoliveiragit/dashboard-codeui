@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -13,20 +13,32 @@ module.exports = {
       center: true,
       padding: "2rem",
     },
-    extend: {
-        animation: {
-          border: 'border 4s ease infinite',
+    animation: {
+      shine: "shine 2s linear infinite",
+    },
+    keyframes: {
+      shine: {
+        from: {
+          backgroundPosition: "0 0",
         },
-        keyframes: {
-          border: {
-            '0%, 100%': { backgroundPosition: '0% 50%' },
-            '50%': { backgroundPosition: '100% 50%' },
-          },
-     
+        to: {
+          backgroundPosition: "-200% 0",
+        },
       },
- 
+    },
+
+    extend: {
+      animation: {
+        border: "border 4s ease infinite",
+      },
+      keyframes: {
+        border: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
       screens: {
-        'fscreen': '1780px',
+        fscreen: "1780px",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -87,4 +99,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

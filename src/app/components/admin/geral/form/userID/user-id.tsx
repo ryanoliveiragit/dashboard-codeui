@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/src/app/components/ui/button";
 import { useToast } from "@/src/app/components/ui/use-toast";
 import { useUser } from "@/src/app/shared/context/userData";
@@ -9,12 +7,16 @@ export const UserID = () => {
   const { toast } = useToast();
 
   const userData = useUser();
-  const handleUpdateProfile = () => {
-    toast({
-      variant: "default",
-      title: "Copiado para area de transferencia",
-      description: "codeID",
-    });
+  const handleCopyProfile = () => {
+    const valueToCopy = userData?.id;
+    if (valueToCopy) {
+      navigator.clipboard.writeText(valueToCopy);
+      toast({
+        variant: "default",
+        title: "Copiado para a área de transferência",
+        description: "ID: "+ valueToCopy,
+      });
+    }
   };
 
   return (
@@ -30,7 +32,7 @@ export const UserID = () => {
             <Button
               variant="outline"
               className="flex flex-row gap-2 text-sm text-muted-foreground"
-              onClick={handleUpdateProfile}
+              onClick={handleCopyProfile}
             >
               {userData?.id}
               <span>

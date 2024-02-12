@@ -1,26 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { useRef, useState } from "react";
 
 import Modal from "./Modal";
 import { PencilIcon } from "lucide-react";
 import { useUser } from "@/src/app/shared/context/userData";
+import { useUploadAvatarContext } from "@/src/app/shared/context/avatarUpload";
 
 const Profile = () => {
-    const userData = useUser();
+  const userData = useUser();
+  const { setLoading } = useUploadAvatarContext();
 
-  const avatarUrl = useRef(
-    "https://i0.wp.com/css-tricks.com/wp-content/uploads/2018/07/scrolling-gradient.png?fit=1200%2C600&ssl=1"
-  );
+  const [avatarUrl, setAvatarUrl] = useState(userData?.avatar); // Use state para controlar o URL do avatar
   const [modalOpen, setModalOpen] = useState(false);
 
   const updateAvatar = (imgSrc: any) => {
-    avatarUrl.current = imgSrc;
+    setLoading(true);
+    setAvatarUrl(imgSrc); // Atualize o URL do avatar quando um novo for selecionado
   };
+
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex flex-col items-center">
       <div className="relative">
         <img
-          src={userData?.avatar === null ? "https://i0.wp.com/css-tricks.com/wp-content/uploads/2018/07/scrolling-gradient.png?fit=1200%2C600&ssl=1" : userData?.avatar}
+          src={avatarUrl ? avatarUrl : userData?.avatar}
           alt="Avatar"
           className="w-[150px] h-[150px] rounded-full border-2 border-muted"
         />

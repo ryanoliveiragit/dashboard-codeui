@@ -1,4 +1,3 @@
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +11,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../../ui/dropdown-menu"
+} from "../../ui/dropdown-menu";
 import { BsChevronExpand } from "react-icons/bs";
 import { AvatarUser } from "../avatar";
 import { useUser } from "@/src/app/shared/context/userData";
@@ -20,22 +19,25 @@ import { PiCrownSimpleFill } from "react-icons/pi";
 import { FaCircle } from "react-icons/fa";
 
 export function DropdownMenuDemo() {
-    const data = useUser()
+  const data = useUser();
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild >
-        <button className="mt-1 mr-4"><BsChevronExpand /></button>
+      <DropdownMenuTrigger asChild>
+        <button className="mt-1 mr-1">
+          <BsChevronExpand />
+        </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 bg-background">
         <section className="flex flex-row gap-1 items-center">
-            
-        <AvatarUser size="w-[25px] h-[25px]" avatarUrl={data?.avatar} />
-        <DropdownMenuLabel>{data?.username}</DropdownMenuLabel>
-        <span className="text-[10px] text-muted-foreground mt-0.5">{data?.plan}</span>
+          <AvatarUser size="w-[25px] h-[25px]" avatarUrl={data?.avatar} />
+          <DropdownMenuLabel>{data?.username}</DropdownMenuLabel>
+          <span className="text-[10px] text-muted-foreground mt-0.5">
+            {data?.plan}
+          </span>
         </section>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-        <DropdownMenuSub>
+          <DropdownMenuSub>
             <DropdownMenuSubTrigger>Perfil</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -47,7 +49,7 @@ export function DropdownMenuDemo() {
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
-        
+
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>Projetos</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -56,23 +58,21 @@ export function DropdownMenuDemo() {
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
-     
+
           <DropdownMenuItem className="flex flex-row gap-1">
-            <PiCrownSimpleFill color="#daa520"/> PRO
+            <PiCrownSimpleFill color="#daa520" /> PRO
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-      
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>Usuários</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-              <DropdownMenuItem className="flex flex-row gap-1"><FaCircle size={10} color="#66CC33" /> {data?.username}</DropdownMenuItem>
- 
-             
-           
+                <DropdownMenuItem className="flex flex-row gap-1">
+                  <FaCircle size={10} color="#66CC33" /> {data?.username}
+                </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
@@ -92,5 +92,5 @@ export function DropdownMenuDemo() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

@@ -14,6 +14,10 @@ import { RenderLineChart } from "../../shared/graphcs/charts/line";
 import { VerticalBar } from "../../shared/graphcs/charts/verticalBar";
 import { PieGraphc } from "../../shared/graphcs/charts/pie";
 import { BarChartGraphc } from "../../shared/graphcs/charts/bar";
+import { usePathname } from "next/navigation";
+import { instance } from "@/src/utils/axios";
+import { useUser } from "../../shared/context/userData";
+import { useSession } from "next-auth/react";
 
 export const AnalyticsContent = () => {
   const [isLoading, setIsLoading] = useState(true);

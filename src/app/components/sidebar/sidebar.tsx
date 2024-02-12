@@ -17,11 +17,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { GoGear } from "react-icons/go";
+import { useUser } from "../../shared/context/userData";
+import { FaCircle } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
   const pathname = usePathname();
   console.log("path", pathname);
   const handleClose = () => setIsOpen(false);
+  const UserData = useUser();
 
   return (
     <div className="flex ">
@@ -29,7 +41,7 @@ export const Sidebar = () => {
         <motion.aside
           key="sidebar"
           initial={{ width: 0 }}
-          animate={{ width: isOpen ? 240 : 0 }}
+          animate={{ width: isOpen ? 285 : 0 }}
           exit={{ width: 0 }}
           transition={{ duration: 0.3 }}
           style={{ overflow: "hidden" }}
@@ -41,7 +53,7 @@ export const Sidebar = () => {
                   <UserProfile />
                 </div>
 
-                <div className="flex mt-4">
+                <div className="mt-4">
                   <Tabs defaultValue="Favoritos">
                     <TabsList>
                       {Object.keys(tabData).map((tabName) => (
@@ -60,12 +72,49 @@ export const Sidebar = () => {
                         <RecentItens />
                       </ul>
                     </TabsContent>
+
+                    <TabsContent key={"favorites"} value={"Favoritos"}>
+                      <ul className="flex flex-col px-2 text-sm gap-3 w-full">
+                        {UserData?.favorites.map((favorite) => (
+                          <li
+                            key={favorite.id}
+                            className="flex flex-row items-center gap-3 px-2 justify-between w-full"
+                          >
+                            <span className="flex flex-row gap-3 items-center">
+                              <FaCircle size={5} />
+                              {favorite.name}
+                            </span>
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <Button
+                                    variant="ghost"
+                                    className="p-3 h-0 hover:text-red-500"
+                                  >
+                                    <FaRegTrashAlt size={14} />
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Excluir favorito</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </li>
+                        ))}
+                      </ul>
+                    </TabsContent>
                   </Tabs>
                 </div>
 
                 <div className="mt-8">
                   <h3 className="rounded-sm text-sm font-medium text-muted-foreground">
-                    <Link  href={"ryanvs.dev"} target="_blank" className="hover:underline">1 - www.ryanvs.dev</Link>
+                    <Link
+                      href={"ryanvs.dev"}
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      1 - www.ryanvs.dev
+                    </Link>
                   </h3>
 
                   <ul className="flex mt-4 flex-col gap-4">
@@ -116,17 +165,17 @@ export const Sidebar = () => {
                     Configurações
                   </h3>
                   <ul>
-                  <NextLink
-                        href="/dashboard/settings/profile"
-                        className={`${
-                          pathname?.includes("/dashboard/settings/profile")
-                            ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
-                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
-                        } flex gap-2 items-center`}
-                        passHref
-                      >
-                        <GoGear size={18} /> Configurações
-                      </NextLink>
+                    <NextLink
+                      href="/dashboard/settings/profile"
+                      className={`${
+                        pathname?.includes("/dashboard/settings/profile")
+                          ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
+                          : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
+                      } flex gap-2 items-center`}
+                      passHref
+                    >
+                      <GoGear size={18} /> Configurações
+                    </NextLink>
                   </ul>
                 </div>
               </ul>

@@ -115,13 +115,12 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       {error && <p className="text-red-400 text-xs">{error}</p>}
       {imgSrc && (
         <div className="flex flex-col items-center">
-          <ReactCrop
+           <ReactCrop
             crop={crop}
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
             circularCrop
             keepSelection
             aspect={ASPECT_RATIO}
-        
             minWidth={MIN_DIMENSION}
           >
             <img
@@ -137,7 +136,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
             className="text-xs py-2 px-4 rounded-2xl mt-4 bg-third hover:bg-background text-secondary hover:text-primary "
             onClick={() => {
               if (imgRef.current && previewCanvasRef.current) {
-                location.reload();
+                // location.reload();
                 setCanvasPreview(
                   imgRef.current,
                   previewCanvasRef.current,
@@ -161,7 +160,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       )}
       {crop && (
         <canvas
-          ref={previewCanvasRef}
+        ref={previewCanvasRef}
           className="mt-4"
           style={{
             display: "none",

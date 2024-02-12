@@ -10,9 +10,6 @@ type AvatarUserType = {
 
 export const AvatarUser = ({ size, avatarUrl }: AvatarUserType) => {
   const userData = useUser();
-  const [isOpen, setIsOpen] = useState(false)
-
-
 
   return (
    <>

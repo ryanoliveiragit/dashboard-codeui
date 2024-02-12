@@ -19,6 +19,7 @@ function Home() {
 
     if (result?.error) {
       setMessageApi(result.error);
+      console.log(result.error)
       return;
     }
 

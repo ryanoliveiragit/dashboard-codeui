@@ -9,9 +9,10 @@ import { Input } from "@/src/app/components/ui/input";
 import { Button } from "@/src/app/components/ui/button";
 import { useUser } from "@/src/app/shared/context/userData";
 import { instance } from "@/src/utils/axios";
-
+import { useUploadAvatarContext } from "../../../../../shared/context/avatarUpload";
 import { useSession } from "next-auth/react";
 import Profile from "./profile";
+import { useContext } from "react";
 
 const usernameSchema = z.object({
   username: z
@@ -25,14 +26,16 @@ type usernameFormInputs = z.infer<typeof usernameSchema>;
 
 export const UserConfigurations = () => {
   const { toast } = useToast();
+  const { loading } = useUploadAvatarContext();
   const userData = useUser();
-  
+
+  console.log("avatar: ", loading);
   const { data: session } = useSession();
   const {
     formState: { errors },
     handleSubmit,
     register,
-    watch
+    watch,
   } = useForm<usernameFormInputs>({
     resolver: zodResolver(usernameSchema),
   });
@@ -51,7 +54,7 @@ export const UserConfigurations = () => {
         title: "Perfil atualizado com sucesso!",
         description: "Username",
       });
-
+      window.location.reload();
     } catch (error) {
       toast({
         variant: "destructive",
@@ -62,46 +65,45 @@ export const UserConfigurations = () => {
   }
 
   return (
-   <>
-  
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <section>
-        
-        <div className="border w-full p-5 rounded-t-md flex flex-row justify-between">
-          <section className="flex flex-col gap-2">
-            <h1 className="text-xl font-semibold">Nome de exibição</h1>
-            <div>
-              <h2 className="text-sm">
-                Digite seu nome completo ou um nome de exibição com o qual você
-                se sinta confortável
-              </h2>
-            </div>
-            <section className="mt-2">
-              <Input
-                className={`w-72 outline-none ${
-                  errors.username
-                    ? "border-red-500 focus:outline-red-500 outline-red-500"
-                    : ""
-                }`}
-                placeholder={userData?.username}
-                {...register("username")}
-              />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <section>
+          <div className="border w-full p-5 rounded-t-md flex flex-row justify-between">
+            <section className="flex flex-col gap-2">
+              <h1 className="text-xl font-semibold">Nome de exibição</h1>
+              <div>
+                <h2 className="text-sm">
+                  Digite seu nome completo ou um nome de exibição com o qual
+                  você se sinta confortável
+                </h2>
+              </div>
+              <section className="mt-2">
+                <Input
+                  className={`w-72 outline-none ${
+                    errors.username
+                      ? "border-red-500 focus:outline-red-500 outline-red-500"
+                      : ""
+                  }`}
+                  placeholder={userData?.username}
+                  {...register("username")}
+                />
+              </section>
             </section>
-          </section>
-          <Profile />
-        </div>
-        <footer className="border w-full p-5 rounded-b-md text-sm text-muted-foreground flex flex-row justify-between items-center">
-          Use no máximo 12 caracteres.
-          <Button
-            className="h-8"
-            variant="default"
-            type="submit"
-            disabled={!usernameValue}
-          >
-            Salvar
-          </Button>
-        </footer>
-      </section>
-    </form></>
+            <Profile />
+          </div>
+          <footer className="border w-full p-5 rounded-b-md text-sm text-muted-foreground flex flex-row justify-between items-center">
+            Use no máximo 12 caracteres.
+            <Button
+              className="h-8"
+              variant="default"
+              type="submit"
+              disabled={!loading && !usernameValue}
+            >
+              Salvar
+            </Button>
+          </footer>
+        </section>
+      </form>
+    </>
   );
 };

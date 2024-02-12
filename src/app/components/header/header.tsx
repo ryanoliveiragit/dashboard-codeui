@@ -1,32 +1,37 @@
-"use client"
-import { useContext, useState } from "react";
+"use client";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ToastDemo } from "../toast/toast";
 import { TbBookmarks } from "react-icons/tb";
-import { SidebarContext, SidebarNotifyContext } from "../../shared/context/aside";
+import {
+  SidebarContext,
+  SidebarNotifyContext,
+} from "../../shared/context/aside";
 import { usePathname } from "next/navigation";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiBellOn } from "react-icons/ci";
+import { useUser } from "../../shared/context/userData";
+import { useSession } from "next-auth/react";
+import { instance } from "@/src/utils/axios";
 
 export const Header: React.FC = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
-
-  const [notify, setNotify] = useState<number>(1);
-
   const pathname = usePathname();
+  const [notify, setNotify] = useState<number>(1);
 
   const formatPath = () => {
     const parts = pathname.split("/").filter(Boolean); // Remove elementos vazios
     const formattedParts = parts.map((part, index) => {
       if (index === 0) {
-        return "Dashboard";
+        return "dashboard";
       } else if (index === 1) {
-        return "projeto - www.ryanvs";
+        return "ryanvs";
       } else {
         return part;
       }
     });
+    console.log(formattedParts[0]);
     return formattedParts;
   };
 
@@ -45,12 +50,15 @@ export const Header: React.FC = () => {
             </Button>
           )}
           <TbBookmarks size={20} />
+
           <ToastDemo />
           <span className="flex flex-row gap-2 items-center text-muted-foreground ">
             {formatPath().map((part, index) => (
               <span key={index}>
                 {part}
-                {index < formatPath().length - 1 && <span className="text-primary"> / </span>}
+                {index < formatPath().length - 1 && (
+                  <span className="text-primary"> / </span>
+                )}
               </span>
             ))}
           </span>

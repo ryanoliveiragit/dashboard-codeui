@@ -13,7 +13,7 @@ export default async function PrivateLayout({ children }: PrivateLayoutProps) {
   const session = await getServerSession(authOptions);
 
   if (session) {
-    redirect("/dashboard");
+    redirect("/dashboard/ryanvs/analytics");
   }
 
   return <>{children}</>;

@@ -57,6 +57,7 @@ export const UserContactConfig = () => {
         title: "Contato atualizado com sucesso!",
         description: "Contato",
       });
+      window.location.reload()
     } catch (error) {
       toast({
         variant: "destructive",
