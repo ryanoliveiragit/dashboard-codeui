@@ -7,6 +7,8 @@ import GeralConfig from "./geral/geral";
 import { adminData } from "@/src/utils/admin-links";
 import { Plans } from "../plans/plans";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { signIn, useSession } from "next-auth/react";
 
 interface AdminItem {
   title: string;
@@ -15,7 +17,10 @@ interface AdminItem {
 export const Admin = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Geral"); // Estado para armazenar o item selecionado
   const { loading, setLoadingWithTimeout } = useLoading();
-
+  const { data: session } = useSession();
+  const handleClick = () => {
+    signIn("google");
+  };
   // Função para renderizar o componente selecionado
   const renderSelectedComponent = () => {
     switch (selectedItem) {
@@ -58,10 +63,21 @@ export const Admin = () => {
                     </Badge>
                   </div>
                 ) : (
-                  <span>{item.title}</span>
+                  <div>
+                    <span>{item.title}</span>
+                 
+                  </div>
                 )}
               </li>
             ))}
+              <button
+                type="button"
+                className="btn btn-link btn-floating-mx-1"
+                onClick={() => signIn("google")}
+              >
+                a
+              </button>
+                
           </ul>
 
           <aside className="h-full ml-80 w-full">

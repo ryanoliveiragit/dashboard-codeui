@@ -26,7 +26,7 @@ export function ToastDemo() {
 
         if (session) {
           const response = await axios.get(
-            `https://codeui-api-production.up.railway.app/api/user/favorite/${lastPart}`,
+            `https://codeui-api-development.up.railway.app/api/user/favorite/${lastPart}`,
             {
               headers: {
                 Authorization: `Bearer ${session?.accessToken}`,
@@ -49,7 +49,7 @@ export function ToastDemo() {
       const lastPart = parts[parts.length - 1];
 
       const response = await axios.post(
-        "https://codeui-api-production.up.railway.app/api/user/favorite",
+        "https://codeui-api-development.up.railway.app/api/user/favorite",
         {
           name: lastPart,
         },
@@ -100,7 +100,7 @@ export function ToastDemo() {
       {showIcon ? (
         <HiOutlineStar size={20} />
       ) : (
-        <FaStar size={20} />
+        <FaStar color={"#0F172A"} size={20} />
       )}
     </Button>
   );

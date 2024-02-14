@@ -10,9 +10,9 @@ import {
 import { usePathname } from "next/navigation";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiBellOn } from "react-icons/ci";
-import { useUser } from "../../shared/context/userData";
-import { useSession } from "next-auth/react";
-import { instance } from "@/src/utils/axios";
+import { ModeToggle } from "../ui/toggle-mode";
+
+import { CommandDialogDemo } from "../commandDialog";
 
 export const Header: React.FC = () => {
   const { isOpenNotify, setIsOpenNotify } = useContext(SidebarNotifyContext)!;
@@ -64,6 +64,8 @@ export const Header: React.FC = () => {
           </span>
         </li>
         <div className="flex flex-row gap-4 items-center">
+          <ModeToggle />
+          <CommandDialogDemo />
           <Button
             variant="ghost"
             onClick={handleClickNotify}
@@ -71,7 +73,7 @@ export const Header: React.FC = () => {
           >
             <CiBellOn size={25} />
             {notify !== 0 && (
-              <span className="bg-red-500 text-white rounded-full absolute top-[5px] flex items-center justify-center right-[10px] w-4 h-4 text-[10px]">
+              <span className="bg-third text-secondary rounded-full absolute top-[5px] flex items-center justify-center right-[10px] w-4 h-4 text-[10px]">
                 {notify}
               </span>
             )}

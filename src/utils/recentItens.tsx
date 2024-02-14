@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaCircle } from "react-icons/fa";
 import { TabSelectContext } from "../app/shared/context/aside";
 import Link from "next/link";
-
+import { BiCollapseAlt } from "react-icons/bi";
 export const RecentItens = () => {
   const { setSelectedTab, selectedTab } = useContext(TabSelectContext)!;
 
@@ -28,12 +28,13 @@ export const RecentItens = () => {
     <div>
       <ul className="flex flex-col gap-3 px-2">
         {recents.map((item, index) => (
+          
           <li
             key={index}
-            className="flex items-center gap-4 text-[14px] cursor-pointer hover:underline"
+            className="flex flex-row gap-3 items-center text-sm text-muted-foreground fill-gray-300"
             onClick={() => handleItemClick(item)}
           >
-            <FaCircle size={5} />
+            <BiCollapseAlt size={10} />
             <Link href={`/dashboard/ryanvs/${item}`} passHref>
              {item}
             </Link>

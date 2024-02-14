@@ -20,13 +20,15 @@ import { GoGear } from "react-icons/go";
 import { useUser } from "../../shared/context/userData";
 import { FaCircle } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
-
+import { IoUnlink } from "react-icons/io5";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 export const Sidebar = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext)!;
@@ -34,6 +36,23 @@ export const Sidebar = () => {
   console.log("path", pathname);
   const handleClose = () => setIsOpen(false);
   const UserData = useUser();
+  const { data: session } = useSession();
+
+  const handleDeleteFavorite = async () => {
+    try {
+      const response = await axios.delete(
+        `https://codeui-api-development.up.railway.app/api/user/favorite/2`, // Incluindo o ID na URL
+        {
+          headers: {
+            Authorization: `Bearer ${session?.accessToken}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      alert("erro");
+    }
+  };
 
   return (
     <div className="flex ">
@@ -80,18 +99,19 @@ export const Sidebar = () => {
                             key={favorite.id}
                             className="flex flex-row items-center gap-3 px-2 justify-between w-full"
                           >
-                            <span className="flex flex-row gap-3 items-center">
-                              <FaCircle size={5} />
+                            <span className="flex flex-row gap-3 hover:underline cursor-pointer items-center text-sm text-muted-foreground fill-gray-300">
+                              <IoUnlink size={12} color="#D0F393" />
                               {favorite.name}
                             </span>
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
                                   <Button
+                                    onClick={handleDeleteFavorite}
                                     variant="ghost"
-                                    className="p-3 h-0 hover:text-red-500"
+                                    className="p-3 h-0 text-gray-500 hover:text-red-500"
                                   >
-                                    <FaRegTrashAlt size={14} />
+                                    <FaRegTrashAlt size={12} />
                                   </Button>
                                 </TooltipTrigger>
                                 <TooltipContent>
@@ -123,8 +143,8 @@ export const Sidebar = () => {
                         href="/dashboard/ryanvs/analytics"
                         className={`${
                           pathname?.includes("/dashboard/ryanvs/analytics")
-                            ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
-                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
+                            ? "border border-third text-primary rounded-md h-10 p-2 w-full font-semibold text-sm"
+                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted text-sm"
                         } flex gap-2 items-center`}
                         passHref
                       >
@@ -136,8 +156,8 @@ export const Sidebar = () => {
                         href="/dashboard/ryanvs/document"
                         className={`${
                           pathname?.includes("/dashboard/ryanvs/document")
-                            ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
-                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
+                            ? "border border-third text-primary rounded-md h-10 p-2 w-full font-semibold text-sm"
+                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted text-sm"
                         } flex gap-2 items-center`}
                         passHref
                       >
@@ -149,8 +169,8 @@ export const Sidebar = () => {
                         href="/dashboard/ryanvs/investiment"
                         className={`${
                           pathname?.includes("/dashboard/ryanvs/investiment")
-                            ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
-                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
+                            ? "border border-third text-primary rounded-md h-10 p-2 w-full font-semibold text-sm"
+                            : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted text-sm"
                         } flex gap-2 items-center`}
                         passHref
                       >
@@ -169,8 +189,8 @@ export const Sidebar = () => {
                       href="/dashboard/settings/profile"
                       className={`${
                         pathname?.includes("/dashboard/settings/profile")
-                          ? "bg-primary rounded-md text-secondary h-10 p-2 w-full font-semibold text-sm"
-                          : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted"
+                          ? "border border-third text-primary rounded-md h-10 p-2 w-full font-semibold text-sm"
+                          : "bg-background rounded-md text-primary h-10 p-2 w-full font-normal hover:bg-muted text-sm"
                       } flex gap-2 items-center`}
                       passHref
                     >

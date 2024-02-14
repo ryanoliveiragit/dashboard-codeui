@@ -28,7 +28,7 @@ export default function UseDataUser() {
         // Verifica se o usuário está autenticado e tem uma sessão
         if (status === "authenticated" && session?.accessToken) {
           // Faz a solicitação GET para obter os dados do usuário
-          const response = await axios.get<UserData>("https://codeui-api-production.up.railway.app/api/user", {
+          const response = await axios.get<UserData>("https://codeui-api-development.up.railway.app/api/user", {
             // Inclui o token de acesso no cabeçalho Authorization para autenticar a solicitação
             headers: {
               Authorization: `Bearer ${session.accessToken}`,
@@ -45,7 +45,7 @@ export default function UseDataUser() {
 
           // Atualiza o token de acesso
           try {
-            const refreshResponse = await axios.post<{ refreshToken: string }>("https://codeui-api-production.up.railway.app/api/user/session/refresh", {}, {
+            const refreshResponse = await axios.post<{ refreshToken: string }>("https://codeui-api-development.up.railway.app/api/user/session/refresh", {}, {
               // Inclui o token de acesso atual no cabeçalho Authorization para autenticar a solicitação de atualização
               headers: {
                 Authorization: `Bearer ${session?.accessToken}`
