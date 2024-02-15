@@ -100,7 +100,7 @@ export function ToastDemo() {
       {showIcon ? (
         <HiOutlineStar size={20} />
       ) : (
-        <FaStar color={"#0F172A"} size={20} />
+        <FaStar color={"#FF700"} size={20} />
       )}
     </Button>
   );

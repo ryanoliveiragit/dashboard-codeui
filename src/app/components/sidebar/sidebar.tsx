@@ -100,7 +100,7 @@ export const Sidebar = () => {
                             className="flex flex-row items-center gap-3 px-2 justify-between w-full"
                           >
                             <span className="flex flex-row gap-3 hover:underline cursor-pointer items-center text-sm text-muted-foreground fill-gray-300">
-                              <IoUnlink size={12} color="#D0F393" />
+                              <IoUnlink size={12} color="#E37A59" />
                               {favorite.name}
                             </span>
                             <TooltipProvider>
