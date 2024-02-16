@@ -41,7 +41,7 @@ export const Sidebar = () => {
   const handleDeleteFavorite = async () => {
     try {
       const response = await axios.delete(
-        `https://codeui-api-development.up.railway.app/api/user/favorite/2`, // Incluindo o ID na URL
+        `https://codeui-api-production.up.railway.app/api/user/favorite/2`, // Incluindo o ID na URL
         {
           headers: {
             Authorization: `Bearer ${session?.accessToken}`,

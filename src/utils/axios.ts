@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = "https://codeui-api-development.up.railway.app/api";
+const BASE_URL = "https://codeui-api-production.up.railway.app/api";
 
 export const instance = axios.create({
     baseURL: BASE_URL,

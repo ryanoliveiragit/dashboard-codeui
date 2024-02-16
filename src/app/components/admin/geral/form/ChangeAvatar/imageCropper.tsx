@@ -66,7 +66,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       const formData = new FormData();
       formData.append("avatar", file);
 
-      const response = await fetch("https://codeui-api-development.up.railway.app/api/user/avatar", {
+      const response = await fetch("https://codeui-api-production.up.railway.app/api/user/avatar", {
         method: "PATCH",
         body: formData,
         headers: {

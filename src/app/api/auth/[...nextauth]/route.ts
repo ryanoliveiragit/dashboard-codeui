@@ -20,7 +20,7 @@ const authOptions: AuthOptions = {
 
       async authorize(credentials, req) {
         const response = await fetch(
-          "https://codeui-api-development.up.railway.app/api/user/session",
+          "https://codeui-api-production.up.railway.app/api/user/session",
           {
             method: "POST",
             headers: {

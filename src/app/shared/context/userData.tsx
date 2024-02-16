@@ -30,7 +30,7 @@ export const UserProvider = ({ children }: any) => {
     async function getUserData() {
       try {
         if (status === "authenticated" && session?.accessToken) {
-          const response = await axios.get<UserData>("https://codeui-api-development.up.railway.app/api/user", {
+          const response = await axios.get<UserData>("https://codeui-api-production.up.railway.app/api/user", {
             headers: {
               Authorization: `Bearer ${session.accessToken}`,
             },
@@ -41,7 +41,7 @@ export const UserProvider = ({ children }: any) => {
         if ((error as AxiosError)?.response?.status === 401) {
           console.log("sem autorização");
           try {
-            const refreshResponse = await axios.post<{ refreshToken: string }>("https://codeui-api-development.up.railway.app/api/user/session/refresh", {}, {
+            const refreshResponse = await axios.post<{ refreshToken: string }>("https://codeui-api-production.up.railway.app/api/user/session/refresh", {}, {
               headers: {
                 Authorization: `Bearer ${session?.accessToken}`
               },
