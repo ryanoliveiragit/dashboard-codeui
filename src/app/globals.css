@@ -34,7 +34,7 @@
     color: white; /* Define a cor do texto como branco */
   }
   .dark {
-    --third: 82, 80%, 76%;
+    --third: 14, 71%, 62%;
     --background: 222, 3%, 8%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;

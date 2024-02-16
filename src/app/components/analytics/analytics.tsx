@@ -4,40 +4,40 @@ import React, { useEffect, useState } from "react";
 import { ApexOptions } from "apexcharts";
 
 import dynamic from "next/dynamic";
+import { BarChart } from "./barChart";
+import { AreaChart } from "./areaChart";
+import { BarTwoChart } from "./pollarChart";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const options: ApexOptions = {
-  
   subtitle: {
-    text: `Total de visualizações`,
+    text: "Total de visualizações",
 
-    align: 'left',
-    margin: 30,
-    offsetX: 0,
-    offsetY: 0,
+    align: "left",
+    offsetX: 10,
+    offsetY: 20,
     floating: false,
     style: {
-      fontSize:  '16px',
-      fontWeight:  'bold',
-      color:  '#fff'
+      fontSize: "18px",
+      fontWeight: "bold",
+      color: "#fff",
     },
-},
+  },
   title: {
-    text: `(anual)`,
-    align: 'left',
-    margin: 40,
-    offsetX: 175,
-    offsetY: 0,
+    text: `(mensal)`,
+    align: "left",
+    offsetX: 210,
+    offsetY: 25,
     floating: false,
     style: {
-      fontSize:  '12px',
-      fontWeight:  'semi-bold',
-      color:  '#c1c1c1'
+      fontSize: "12px",
+      fontWeight: "semi-bold",
+      color: "#c1c1c1",
     },
-},
+  },
   chart: {
     toolbar: {
-      show: false
+      show: false,
     },
     height: 350,
     zoom: {
@@ -46,13 +46,17 @@ const options: ApexOptions = {
     foreColor: "",
   },
 
-  colors: ["#a0cf90"],
+  colors: ["#E37A59"],
   stroke: {
     curve: "smooth",
   },
   xaxis: {
     labels: {
-      show: false,
+      show: true,
+
+      style: {
+        colors: "#fff",
+      },
     },
     categories: [
       "Janeiro",
@@ -81,17 +85,22 @@ const options: ApexOptions = {
       fill: {
         type: "gradient",
         gradient: {
-          colorFrom: "#D8E3F0",
-          colorTo: "#BED1E6",
+          colorFrom: "#E37A59",
+          colorTo: "#E37A59",
           stops: [0, 100],
-          opacityFrom: 0.4,
-          opacityTo: 0.5,
+          opacityFrom: 5,
+          opacityTo: 0.1,
         },
       },
     },
   },
   yaxis: {
-    show: false,
+    show: true,
+    labels: {
+      style: {
+        colors: "#fff",
+      },
+    },
   },
 
   grid: {
@@ -104,10 +113,10 @@ const options: ApexOptions = {
   },
 
   fill: {
-    colors: ["#a0cf90"],
+    colors: ["#E37A59"],
     type: "gradient",
     gradient: {
-      gradientToColors: ["#151515"],
+      gradientToColors: ["#E37A59"],
       shadeIntensity: 1,
       opacityFrom: 0.4,
       opacityTo: 0.0,
@@ -130,14 +139,25 @@ const series = [
 
 export const AnalyticsContent = () => {
   return (
-    <div className="border border-muted rounded-md max-w-[500px]">
-      <Chart
-        options={options}
-        series={series}
-        width={500}
-        height={200}
-        type="area"
-      />
-    </div>
+    <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="border border-muted rounded-md">
+        <AreaChart />
+      </div>
+      <div className="border border-muted rounded-md">
+        <BarTwoChart />
+      </div>
+      <div className="border border-muted rounded-md">
+        <BarChart />
+      </div>
+      <div className="border border-muted rounded-md">
+        <Chart
+          options={options}
+          series={series}
+          width={`100%`}
+          height={350}
+          type="area"
+        />
+      </div>
+    </section>
   );
 };
